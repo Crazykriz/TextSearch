@@ -109,4 +109,46 @@ If you want to use another text search algorithm instead just replace the class 
 
 ## Factory class `TextSearcher`
 
-Factory class `TextSearcher` is the most quickest way to search a text with TextSearch.
+Factory class `TextSearcher` is the most quickest way to get a text searched. Each algorithm who is available in the recent version of TextSearch is also available as a static method in the factory class; plus a static method which allows you to choose the right algorithm during runtime.
+
+As shown in the factory class example before all you need is to reference class `TextSearcher` in the namespace and call its static methods:
+
+    <?php
+    use Crazykriz\TextSearch\TextSearcher;
+    
+    $result = TextSearcher::searchRabinKarp($source, $pattern);
+
+If you need some dynamical algorithm choice during runtime just use the static `search(...)` method:
+
+    <?php
+    use Crazykriz\TextSearch\TextSearcher;
+    use Crazykriz\TextSearch\Algorithm\SimpleTextSearch;
+    use Crazykriz\TextSearch\Algorithm\RabinKarpTextSearch;
+    use Crazykriz\TextSearch\Algorithm\BoyerMooreTextSearch;
+    use Crazykriz\TextSearch\Algorithm\KnuthMorrisPrattTextSearch;
+    
+    define('SIMPLE', 0);
+    define('RABIN_KARP', 1);
+    define('BOYER_MOORE', 2);
+    define('KNUTH_MORRIS_PRATT', 3);
+     
+    $algorithm = null;
+    
+    switch(RABIN_KARP) 
+    {
+        case RABIN_KARP:
+            $algorithm = new RabinKarpTextSearch();
+            break;
+        case BOYER_MOORE:
+            $algorithm = new BoyerMooreTextSearch();
+            break;
+        case KNUTH_MORRIS_PRATT:
+            $algorithm = new KnuthMorrisPrattTextSearch();
+            break;
+        default:
+            $algorithm = new SimpleTextSearch();
+            break;
+    }
+            
+    $result = TextSearcher::search($algorithm, $source, $pattern);
+
