@@ -1,0 +1,30 @@
+{
+    "name": "crazykriz/textsearch",
+    "description": "A free PHP software library for searching texts using various search algorithms",
+    "version": "1.0.0-dev",
+    "type": "library",
+    "keywords": [
+        "text search"
+    ],
+    "time": "2019-06-28",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Crazykriz",
+            "email": "crazykriz@gmx.net",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "crazykriz@gmx.net"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Crazykriz\\TextSearch\\": "src/"
+        }
+    }
+}
